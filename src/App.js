@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core';
 import { sortBy } from 'lodash';
 import { useEffect, useState } from 'react';
 import { getCountries, getReportByCountry } from './apis';
@@ -9,13 +10,14 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountryId, setSelectedCountryId] = useState('');
   const [report, setReport] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     getCountries().then((res) => {
       console.log({ res });
       const countries = sortBy(res.data, 'Country')
       setCountries(countries);
-      setSelectedCountryId('vn')
+      setSelectedCountryId('vn');
     });
   }, []);
 
@@ -31,16 +33,17 @@ function App() {
         res.data.pop();
         console.log('report', res.data)
         setReport(res.data)
+        setIsLoaded(true);
       })
     }
   }, [selectedCountryId, countries])
-
+  if (!isLoaded) return null;
   return (
-    <>
+    <Container>
       <CountrySelector countries={countries} handleOnChange={handleOnChange} value={selectedCountryId} ></CountrySelector>
       <HighLight report={report}></HighLight>
       <Sumary report={report}></Sumary>
-    </>
+    </Container>
   );
 }
 

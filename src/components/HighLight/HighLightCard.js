@@ -1,12 +1,25 @@
 import React from 'react';
-import { Card, CardContent, Typography } from '@material-ui/core';
+import { Card, CardContent, Typography, makeStyles } from '@material-ui/core';
 
-function HighLightCard({ title, count }) {
+
+const useStyles = makeStyles({
+    wrapper: (props) => {
+        console.log({ props });
+        if (props.type === 'confirmed') return { borderLeft: '5px solid #c9302c' };
+        if (props.type === 'recovered') return { borderLeft: '5px solid #15bd3b' };
+        else return { borderLeft: '5px solid gray' };
+    },
+    title: { fontSize: 18, marginBottom: 5 },
+    count: { fontWeight: 'bold', fontSize: 18 },
+});
+
+function HighLightCard({ title, count, type }) {
+    const style = useStyles({ type });
     return (
-        <Card>
+        <Card className={style.wrapper}>
             <CardContent>
-                <Typography component="p" variant='body2'>{title}</Typography>
-                <Typography component="p" variant='body2'>{count}</Typography>
+                <Typography component="p" variant='body2' className={style.title}>{title}</Typography>
+                <Typography component="p" variant='body2' className={style.count}>{count}</Typography>
             </CardContent>
         </Card>
     );

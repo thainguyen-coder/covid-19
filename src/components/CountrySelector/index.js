@@ -1,6 +1,6 @@
-import { FormControl, InputLabel, NativeSelect } from "@material-ui/core";
-import React, { useEffect } from "react";
-import { getCountries } from "../../apis";
+import { FormControl, FormHelperText, InputLabel, NativeSelect } from "@material-ui/core";
+import React from "react";
+
 
 function index({ value, handleOnChange, countries }) {
 
@@ -22,7 +22,9 @@ function index({ value, handleOnChange, countries }) {
           })
         }
       </NativeSelect>
+      <FormHelperText>Lựa chọn quốc gia</FormHelperText>
     </FormControl>
+
   );
 }
 
