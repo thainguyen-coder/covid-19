@@ -1,6 +1,6 @@
 import React from 'react';
 
-function index(props) {
+function Sumary({ report }) {
     return (
         <div>
             <h1>Đây là Sumary</h1>
@@ -8,4 +8,4 @@ function index(props) {
     );
 }
 
-export default index;
+export default Sumary;
