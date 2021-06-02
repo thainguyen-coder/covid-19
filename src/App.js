@@ -1,9 +1,16 @@
 
-import './App.css';
+
+import CountrySelector from './components/CountrySelector';
+import HighLight from './components/HighLight';
+import Sumary from './components/Sumary';
 
 function App() {
   return (
-   <p>hieeus con cho</p>
+    <>
+      <CountrySelector></CountrySelector>
+      <HighLight></HighLight>
+      <Sumary></Sumary>
+    </>
   );
 }
 
