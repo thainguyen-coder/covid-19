@@ -1,40 +1,38 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 import React from 'react';
-import HighLighCard from './HighLightCard'
+import HighLightCard from './HighLightCard';
 
-function HighLight({ report }) {
+export default function HighLight({ summary }) {
+    // console.log('report',report);
+    // const data = report && report.lenght ? report[report.lenght -1] : []; 
+    // console.log("data",report.lenght)
+    // const summary = [
+    //     {
+    //         title: 'So ca nhiễm',
+    //         count: data.Confirmed,
+    //         type: 'confirmed'
+    //     },
+    //     {
+    //         title: 'So ca khỏi',
+    //         count: data.Recovered,
+    //         type: 'recovered'
+    //     },
+    //     {
+    //         title: 'So ca chết',
+    //         count: data.Deaths,
+    //         type: 'death'
+    //     }
+    // ]
 
-    const data = report && report.length ? report[report.length - 1] : [];
-    console.log('data1', report);
-    const sumary = [{
-        title: 'Số ca nhiễm',
-        count: data.Confirmed,
-        type: 'confirmed'
-    },
-    {
-        title: 'Số ca hồi phục',
-        count: data.Recovered,
-        type: 'recovered'
-    },
-    {
-        title: 'Số ca tử vong',
-        count: data.Deaths,
-        type: 'death'
-    },
-    ]
+  return (
+    <Grid container spacing={3} style={{ marginTop: 10 }}>
 
-    return (
-        <Grid container spacing={3}>
-            {sumary.map((data) => (
-                <Grid item sm={4} key={data.type} xs={12}>
-                    <HighLighCard
-                        title={data.title}
-                        count={data.count}
-                    />
-                </Grid>
-            ))}
-        </Grid>
-    );
+        {summary.map((item,idx)=> (
+            <Grid key={idx} item sm={4} xs={12}>
+                <HighLightCard title={item.title} count={item.count} type={item.type}/>
+            </Grid>
+        ))}
+        
+    </Grid>
+  );
 }
-
-export default HighLight;

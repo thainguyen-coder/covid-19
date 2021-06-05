@@ -1,10 +1,15 @@
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import { sortBy } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { getCountries, getReportByCountry } from './apis';
 import CountrySelector from './components/CountrySelector';
 import HighLight from './components/HighLight';
 import Sumary from './components/Sumary';
+import 'moment/locale/vi';
+import moment from 'moment';
+import '@fontsource/roboto';
+
+moment.locale('vi');
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -37,12 +42,39 @@ function App() {
       })
     }
   }, [selectedCountryId, countries])
+
+  const summary = useMemo(() => {
+    if (report && report.length) {
+      const latestData = report[report.length - 1];
+      return [
+        {
+          title: 'Số ca nhiễm',
+          count: latestData.Confirmed,
+          type: 'confirmed',
+        },
+        {
+          title: 'Khỏi',
+          count: latestData.Recovered,
+          type: 'recovered',
+        },
+        {
+          title: 'Tử vong',
+          count: latestData.Deaths,
+          type: 'death',
+        },
+      ];
+    }
+    return [];
+  }, [report]);
+
   if (!isLoaded) return null;
   return (
-    <Container>
-      <CountrySelector countries={countries} handleOnChange={handleOnChange} value={selectedCountryId} ></CountrySelector>
-      <HighLight report={report}></HighLight>
-      <Sumary report={report}></Sumary>
+    <Container style={{ marginTop: '20px'}}>
+      <Typography variant="h2" component="h2">Số liệu COVID-19</Typography>
+      <Typography>{moment().format('LLL')}</Typography>
+      <CountrySelector countries={countries} handleOnChange={handleOnChange} value={selectedCountryId}/>
+      <HighLight summary={summary}/>
+      <Sumary report={report} selectedCountryId={selectedCountryId}/>
     </Container>
   );
 }

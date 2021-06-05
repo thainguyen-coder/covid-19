@@ -1,28 +1,30 @@
+import { Card, CardContent, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import { Card, CardContent, Typography, makeStyles } from '@material-ui/core';
-
+import CountUp from 'react-countup';
 
 const useStyles = makeStyles({
     wrapper: (props) => {
-        console.log({ props });
-        if (props.type === 'confirmed') return { borderLeft: '5px solid #c9302c' };
-        if (props.type === 'recovered') return { borderLeft: '5px solid #15bd3b' };
-        else return { borderLeft: '5px solid gray' };
+      if (props.type === 'confirmed') return { borderLeft: '5px solid #c9302c' };
+      if (props.type === 'recovered') return { borderLeft: '5px solid #28a745' };
+      else return { borderLeft: '5px solid gray' };
     },
     title: { fontSize: 18, marginBottom: 5 },
     count: { fontWeight: 'bold', fontSize: 18 },
-});
+  });
 
-function HighLightCard({ title, count, type }) {
-    const style = useStyles({ type });
-    return (
-        <Card className={style.wrapper}>
-            <CardContent>
-                <Typography component="p" variant='body2' className={style.title}>{title}</Typography>
-                <Typography component="p" variant='body2' className={style.count}>{count}</Typography>
-            </CardContent>
-        </Card>
-    );
+export default function HighLightCard({ title, count, type }) {
+  const styles = useStyles({ type });
+  return (
+    <Card className={styles.wrapper}>
+      <CardContent>
+        <Typography variant='body2' component='p' className={styles.title}>
+          {title}
+        </Typography>
+        <Typography variant='body2' component='span' className={styles.count}>
+          {/* {count} */}
+            <CountUp end={count} separator=' ' duration={2} />
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 }
-
-export default HighLightCard;
