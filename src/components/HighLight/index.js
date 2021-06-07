@@ -1,6 +1,6 @@
-import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import React from 'react';
-import HighLighCard from './HighLightCard'
+import HighLighCard from './HighLightCard';
 
 function HighLight({ report }) {
 
@@ -24,7 +24,7 @@ function HighLight({ report }) {
     ]
 
     return (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} style={{ marginTop: 5 }}>
             {sumary.map((data) => (
                 <Grid item sm={4} key={data.type} xs={12}>
                     <HighLighCard

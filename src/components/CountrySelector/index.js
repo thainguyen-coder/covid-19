@@ -6,7 +6,7 @@ function index({ value, handleOnChange, countries }) {
 
 
   return (
-    <FormControl>
+    <FormControl style={{ marginTop: 10 }}>
       <InputLabel htmlFor="country-selector" shrink> Quốc gia</InputLabel>
       <NativeSelect
         value={value}

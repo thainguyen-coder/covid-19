@@ -47,8 +47,7 @@ const generateOptions = (data) => {
         series: [
             {
                 name: 'Tổng Ca nhiễm',
-                data: data.map((item) => item.Confirmed),
-
+                data: data.map((item) => item.Confirmed)
             },
         ],
     };
@@ -97,4 +96,4 @@ function LineChart({ data }) {
     );
 }
 
-export default LineChart;
+export default React.memo(LineChart);
