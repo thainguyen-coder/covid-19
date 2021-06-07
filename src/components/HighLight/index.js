@@ -30,6 +30,7 @@ function HighLight({ report }) {
                     <HighLighCard
                         title={data.title}
                         count={data.count}
+                        type={data.type}
                     />
                 </Grid>
             ))}

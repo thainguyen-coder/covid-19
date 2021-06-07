@@ -1,7 +1,7 @@
 import { Container } from '@material-ui/core';
 import { sortBy } from 'lodash';
 import { useEffect, useState } from 'react';
-import { getCountries, getReportByCountry } from './apis';
+import { getCountries, getReportByCountry } from './components/apis';
 import CountrySelector from './components/CountrySelector';
 import HighLight from './components/HighLight';
 import Sumary from './components/Sumary';
